@@ -1,0 +1,138 @@
+<div id="edit-profile" v-cloak>
+  <div class="container">
+    <h1>Update personal info</h1>
+    <hr/>
+    <ajax-form action="updateProfile" :syncing.sync="syncing" :cloud-error.sync="cloudError" @submitted="submittedForm()" :handle-parsing="handleParsingForm">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="full-name">Full name</label>
+            <input class="form-control" id="full-name" name="full-name" type="text"  :class="[formErrors.fullName ? 'is-invalid' : '']" v-model.trim="formData.fullName" placeholder="Sturgis P. Sturgeon" autocomplete="name" focus-first>
+            <div class="invalid-feedback" v-if="formErrors.fullName">Please enter your full name.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="email-address">Email address</label>
+            <input class="form-control" id="email-address" name="email-address" type="email"  :class="[formErrors.emailAddress ? 'is-invalid' : '']" v-model.trim="formData.emailAddress" placeholder="sturgeon@example.com" autocomplete="email">
+            <div class="invalid-feedback" v-if="formErrors.emailAddress">Please enter a valid email address.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="phone-number">Phone number</label>
+            <input class="form-control" id="phone-number" name="phone-number" type="tel"  :class="[formErrors.phoneNumber ? 'is-invalid' : '']" v-model.trim="formData.phoneNumber" placeholder="+386040844906">
+            <div class="invalid-feedback" v-if="formErrors.phoneNumber">Please enter your phone number.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input class="form-control" id="city" name="city" type="text"  :class="[formErrors.city ? 'is-invalid' : '']" v-model.trim="formData.city" placeholder="Ljubljana">
+            <div class="invalid-feedback" v-if="formErrors.city">Please enter your city.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="birth-year">Birth year</label>
+            <input class="form-control" id="birth-year" name="birth-year" type="number"  :class="[formErrors.birthYear ? 'is-invalid' : '']" v-model.trim="formData.birthYear" placeholder="1990">
+            <div class="invalid-feedback" v-if="formErrors.birthYear">Please enter your birthYear.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender" name="gender" type="email"  :class="[formErrors.gender ? 'is-invalid' : '']" v-model.trim="formData.gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+            <div class="invalid-feedback" v-if="formErrors.gender">Please enter your gender.</div>
+          </div>
+        </div>
+      </div>
+      <h3>Update personal info</h3>
+      <hr/>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="weight">Weight (kg)</label>
+            <input class="form-control" id="weight" name="weight" type="number"  :class="[formErrors.weight ? 'is-invalid' : '']" v-model.trim="formData.weight" placeholder="75">
+            <div class="invalid-feedback" v-if="formErrors.weight">Please enter your phone number.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="height">Height (cm)</label>
+            <input class="form-control" id="height" name="height" type="number"  :class="[formErrors.height ? 'is-invalid' : '']" v-model.trim="formData.height" placeholder="170">
+            <div class="invalid-feedback" v-if="formErrors.emailAddress">Please enter a valid email address.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="blood-pressure">Blood pressure</label>
+            <input class="form-control" id="blood-pressure" name="blood-pressure" type="text"  :class="[formErrors.bloodPressure ? 'is-invalid' : '']" v-model.trim="formData.bloodPressure" placeholder="120/80">
+            <div class="invalid-feedback" v-if="formErrors.bloodPressure">Please enter your bloodPressure.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="health-status">Health status description</label>
+            <textarea class="form-control" id="health-status" name="health-status" type="text"  :class="[formErrors.healthStatus ? 'is-invalid' : '']" v-model.trim="formData.healthStatus" placeholder="Health status description"></textarea>
+            <div class="invalid-feedback" v-if="formErrors.healthStatus">Please enter your health status description.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="profession">Profession</label>
+            <input class="form-control" id="profession" name="profession" type="text"  :class="[formErrors.profession ? 'is-invalid' : '']" v-model.trim="formData.profession" placeholder="Baker ">
+            <div class="invalid-feedback" v-if="formErrors.profession">Please enter your profession.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="sport-activities">Sports activities</label>
+            <input class="form-control" id="sport-activities" name="sport-activities" type="text"  :class="[formErrors.sportsActivities ? 'is-invalid' : '']" v-model.trim="formData.sportsActivities" placeholder="Cycling">
+            <div class="invalid-feedback" v-if="formErrors.sportsActivities">Please enter your sports activities.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="eating-habits">Eating habits</label>
+            <input class="form-control" id="eating-habits" name="eating-habits" type="text"  :class="[formErrors.eatingHabits ? 'is-invalid' : '']" v-model.trim="formData.eatingHabits" placeholder="Junk food">
+            <div class="invalid-feedback" v-if="formErrors.eatingHabits">Please enter your eating habits.</div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="notes">Notes</label>
+            <textarea class="form-control" id="notes" name="notes"  :class="[formErrors.notes ? 'is-invalid' : '']" v-model.trim="formData.notes" placeholder="Any additional notes"></textarea>
+            <div class="invalid-feedback" v-if="formErrors.notes">Please enter your notes.</div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="text-danger" v-if="cloudError === 'emailAlreadyInUse'">There is already an account using that email address.</p>
+          <p class="text-danger" v-else-if="cloudError">An error occured while processing your request. Please check your information and try again, or <a href="/contact">contact support</a> if the error persists.</p>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group text-right">
+            <a class="btn btn-outline-info" href="/account">Cancel</a>
+            <ajax-button type="submit" :syncing="syncing" class="btn btn-dark">Save changes</ajax-button>
+          </div>
+        </div>
+      </div>
+    </ajax-form>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
